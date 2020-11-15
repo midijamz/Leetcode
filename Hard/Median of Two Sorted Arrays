@@ -1,0 +1,30 @@
+/** Runtime: 4 ms, faster than 20.82% of Java online submissions for Median of Two Sorted Arrays.
+Memory Usage: 47.2 MB, less than 5.14% of Java online submissions for Median of Two Sorted Arrays. */
+
+import java.util.Arrays;
+
+class Solution {
+    public double findMedianSortedArrays(int[] nums1, int[] nums2) {
+        int[] combined = new int[nums1.length + nums2.length];
+        // Add the first array into the combined array.
+        int count = 0;
+        for (int i = 0; i < nums1.length; i++) {
+            combined[i] = nums1[i];
+            count++;
+        }
+        // Add the second array into the combined array.
+        for (int i = 0; i < nums2.length; i++) {
+            combined[count] = nums2[i];
+            count++;
+        }
+        // Sort array.
+        Arrays.sort(combined);
+        // Find median.
+        if (combined.length % 2 == 0) {
+            double x = combined[(combined.length / 2) - 1];
+            double y = combined[(combined.length / 2)];
+            return ((x + y) / 2);
+        }
+        else return combined[(combined.length / 2)];
+    }
+}
